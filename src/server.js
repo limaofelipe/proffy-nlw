@@ -27,6 +27,10 @@ const proffys = [
 const express = require('express')
 const server = express()
 const nunjucks = require('nunjucks')
+
+// Consfigura arquivos estáticos CSS e Js
+server.use(express.static("public"))
+
 const subjects = [
     "Artes",
     "Biologia",
@@ -65,18 +69,18 @@ function pageStudy(req, res){
 
 function pageGiveClasses(req, res){
     const data = req.query
-
+    
     const isNotEmpty = Object.keys(data).length > 0
     if (isNotEmpty) {
         data.subject = getSubject(data.subject)
-
+        
         // ADDICIONAR DADOS À LISTA DE PROFFYS
         proffys.push(data)
-
+        
         return res.redirect("/study")
     }
     
-
+    
     return res.render("give-classes.html", {weekdays, subjects})
 }
 
@@ -86,9 +90,9 @@ nunjucks.configure('src/views', {
     noCache: true
 })
 
-server
 // Consfigura arquivos estáticos CSS e Js
-.use(express.static("public"))
+server.use(express.static("public"))
+
 
 // Mostrar
 .get("/", pageLanding)
