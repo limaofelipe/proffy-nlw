@@ -23,14 +23,6 @@ const proffys = [
     time_to: [1220]
     }
 ]
-
-const express = require('express')
-const server = express()
-const nunjucks = require('nunjucks')
-
-// Consfigura arquivos estáticos CSS e Js
-server.use(express.static("public"))
-
 const subjects = [
     "Artes",
     "Biologia",
@@ -53,6 +45,14 @@ const weekdays = [
     "Sexta-feira",
     "Sábado",
 ]
+
+const express = require('express')
+const server = express()
+const nunjucks = require('nunjucks')
+
+// Consfigura arquivos estáticos CSS e Js
+//server.use(express.static("public"))
+
 function getSubject(subjectNumber){
     const arrayPosition = +subjectNumber -1
     return subjects[arrayPosition]
@@ -90,10 +90,9 @@ nunjucks.configure('src/views', {
     noCache: true
 })
 
+server
 // Consfigura arquivos estáticos CSS e Js
-server.use(express.static("public"))
-
-
+.use(express.static("public"))
 // Mostrar
 .get("/", pageLanding)
 .get("/study", pageStudy)
