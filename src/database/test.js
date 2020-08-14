@@ -5,14 +5,14 @@ const createProffy = require('./createProffy')
 Database.then(async (db) => {
     //inserir dados
     proffyValue = {
-        name: "Felipe Lima", 
+        name: "Felipe", 
         avatar: "https://avatars0.githubusercontent.com/u/46505446?s=400&u=cdfc5f2d99a9ee330f3c70455586e5a3a10b3fae&v=4", 
         whatsapp: "(11)988888888", 
-        bio: "O melhor de todos. Entusiasta das melhores tecnologias de química avançada. Apaixonado pela iana! coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.", 
+        bio: "Entusiasta das melhores tecnologias de química avançada. Apaixonado pela iana! coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.", 
     }
 
     classValue = {
-        subject: "Arte de ser fofo", 
+        subject: "História", 
         cost: "R$100,00", 
         //proffy_id virá pelo banco de dados
     }
@@ -22,11 +22,11 @@ Database.then(async (db) => {
         {
             weekday: 1,
             time_from: 720,
-            time_to: 1220
+            time_to:  1220
         },
 
         {
-            weekday: 0,
+            weekday: 2,
             time_from: 520,
             time_to: 1220
         }
@@ -48,7 +48,7 @@ Database.then(async (db) => {
         JOIN classes ON (classes.proffy_id = proffys.id);
         WHERE classes.proffy_id = 1;    
     `)
-    console.log(selectClassesAndProffys)
+    //console.log(selectClassesAndProffys)
     //o horário que a pessoa trabalha por exemplo é das 8h - 18h
     //entao o hotrario do time_from (8h) precisa ser antes ou igual ao horario solicitado
     //o time_to precisa ser acima
